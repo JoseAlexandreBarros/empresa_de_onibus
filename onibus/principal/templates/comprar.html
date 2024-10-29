@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    {% load static %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Empresa de ônibus</title>
+
+  <link rel="stylesheet" href="{% static '/css.css' %}">
+  {% comment %} <script src="{% static 'javacompra.js' %}"></script>  {% endcomment %}
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</head>
+{% load static %}
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #25a6ce;">
+    <a class="navbar-brand" href="{% url 'site_principal'%}">&nbsp&nbspEmpresa de ônibus</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="{% url 'site_principal'%}">Home</a>
+        <a class="nav-item nav-link active" href="{% url 'agenda'%}">Agenda</a>
+        <a class="nav-item nav-link" href="{% url 'pag_logar'%}">Logar</a>
+        <a class="nav-item nav-link" href="{% url 'pag_cadastro'%}">Cadastrar</a>
+        {% if   request.user.is_authenticated %}
+            <a class="nav-item nav-link" href="{% url 'deslogar' %}">Sair</a>
+        {% endif %}
+        <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
+      </div>
+    </div>
+  </nav>
+  {% if messages %}
+{% for message in messages %}
+  <div class="alert {{message.tags}} text-center"  >
+  {{message}}
+</div>
+{% endfor %}
+{% endif %}
+  <p style="text-align: center;">Poltronas em vermelho estão indisponíveis</p>
+    <div style="width:50%;margin-left:25%; margin-top:20px; border: 10px solid #25a6ce;">
+        
+        
+        <div>
+                {% if veiculo.p1 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">1</p>
+                {% else %}
+                    <p id="1" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">1</p>
+                {% endif %}
+                {% if veiculo.p2 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">2</p>
+                {% else %}
+                    <p id='2' class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">2</p>
+                {% endif %}
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                {% if veiculo.p3 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">3</p>
+                {% else %}
+                    <p  id="3"class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">3</p>
+                {% endif %}
+                {% if veiculo.p4 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">4</p>
+                {% else %}
+                <p id="4" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">4</p>
+                {% endif %}
+        
+            </div>
+
+            <div>
+                {% if veiculo.p5 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">5</p>
+                {% else %}
+                    <p id="5" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">5</p>
+                {% endif %}
+                {% if veiculo.p6 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">6</p>
+                {% else %}
+                    <p id="6" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">6</p>
+                {% endif %}
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                {% if veiculo.p7 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">7</p>
+                {% else %}
+                    <p  id="7"class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">7</p>
+                {% endif %}
+                {% if veiculo.p8 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">8</p>
+                {% else %}
+                <p  id="8" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">8</p>
+                {% endif %}
+        
+            </div>
+            <div>
+                {% if veiculo.p9 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">9</p>
+                {% else %}
+                    <p id="9" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">9</p>
+                {% endif %}
+                {% if veiculo.p10 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">10</p>
+                {% else %}
+                    <p id="10" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">10</p>
+                {% endif %}
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                {% if veiculo.p11 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">11</p>
+                {% else %}
+                    <p id="11" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">11</p>
+                {% endif %}
+                {% if veiculo.p12 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">12</p>
+                {% else %}
+                <p id="12" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">12</p>
+                {% endif %}
+        
+            </div>
+            <div>
+                {% if veiculo.p13 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">13</p>
+                {% else %}
+                    <p id="13" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">13</p>
+                {% endif %}
+                {% if veiculo.p14 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">14</p>
+                {% else %}
+                    <p id="14" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">14</p>
+                {% endif %}
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: white;margin:10px;display:inline-block;color:white;">1</p>
+                {% if veiculo.p15 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">15</p>
+                {% else %}
+                    <p  id="15" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">15</p>
+                {% endif %}
+                {% if veiculo.p16 %}
+                    <p style="text-align: center;padding:35px 0;width:100px;height:100px;background-color: red;margin:10px;display:inline-block;">16</p>
+                {% else %}
+                    <p id="16" class="c sel" style="text-align: center;padding:35px 0;width:100px;height:100px;margin:10px;display:inline-block;">16</p>
+                {% endif %}
+        
+            </div>
+            
+    </div>
+    <hr style="border-color: #25a6ce; border-width:10px">
+    <form action="{% url 'comprar_pas' %}" method="post">{% csrf_token %}
+        <input name="bus" type="hidden" value="{{veiculo.id}}">
+        <input id="ass" name="assento" type="hidden" value="">
+        {% comment %} <input name="poltrona" type="hidden" value=""> {% endcomment %}
+    <div class="text-center">
+        <input type="submit" class="btn btn-success" value="Comprar">
+    </div>
+</form>
+
+ <script>
+    const poltronas = document.querySelectorAll(".sel");
+    
+    poltronas.forEach(function(poltrona) {
+
+        poltrona.addEventListener('click', function() {
+            if(poltrona.classList.contains('selecionado')){
+                poltrona.classList.remove('selecionado');
+                poltrona.classList.add('c');
+            }
+          
+            else{
+            const poltronaSelecionado = document.querySelector('.selecionado');
+            if(poltronaSelecionado){
+                poltronaSelecionado.classList.remove('selecionado');
+                poltronaSelecionado.classList.add('c');
+            }
+            
+            
+            
+            poltrona.classList.add('selecionado');
+            poltrona.classList.remove('c');
+        }
+
+            identidade=document.querySelector('.selecionado').id;
+            document.getElementById("ass").value = identidade;
+            
+
+
+          
+        })
+      })
+    
+            
+           
+       
+
+    
+    
+     
+ </script>
+
+</body>
+
+</html>
